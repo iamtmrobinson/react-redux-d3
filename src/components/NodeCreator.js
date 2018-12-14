@@ -10,14 +10,19 @@ class NodeCreator extends React.Component {
     this.setState({ value: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleAdd = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state.value);
+    this.props.onAdd(this.state.value);
+  };
+
+  handleRemove = event => {
+    event.preventDefault();
+    this.props.onRemove(this.state.value);
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <label>
           Name:
           <input
@@ -26,7 +31,8 @@ class NodeCreator extends React.Component {
             onChange={this.handleChange}
           />
         </label>
-        <input type="submit" value="Submit" />
+        <button onClick={this.handleAdd}>Add</button>
+        <button onClick={this.handleRemove}>Remove</button>
       </form>
     );
   }

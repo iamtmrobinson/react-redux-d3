@@ -1,16 +1,16 @@
 import React from "react";
 
-class Graph extends React.Component {
+class Debug extends React.Component {
   render() {
     const { graph } = this.props;
 
     return (
       <div>
-        <p>Graph</p>
+        <h2>Nodes</h2>
         {graph.nodes && (
           <ul>
-            {graph.nodes.map(node => (
-              <li key="hi">Hi</li>
+            {graph.nodes.map((node, index) => (
+              <li key={`node-${index}`}>{node.id}</li>
             ))}
           </ul>
         )}
@@ -19,4 +19,4 @@ class Graph extends React.Component {
   }
 }
 
-export default Graph;
+export default Debug;

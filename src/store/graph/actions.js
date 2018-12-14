@@ -1,9 +1,16 @@
 import * as types from "./actionTypes";
 
 export const addNode = name => {
-  // types.ADD
+  console.log("add node action");
+  return {
+    type: types.ADD_NODE,
+    name
+  };
 };
 
 export const removeNode = name => {
-  // types.REMOVE
+  return {
+    type: types.REMOVE_NODE,
+    name
+  };
 };
