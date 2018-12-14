@@ -2,7 +2,20 @@ import React from "react";
 
 class Graph extends React.Component {
   render() {
-    return <div>Graph</div>;
+    const { graph } = this.props;
+
+    return (
+      <div>
+        <p>Graph</p>
+        {graph.nodes && (
+          <ul>
+            {graph.nodes.map(node => (
+              <li key="hi">Hi</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
   }
 }
 
