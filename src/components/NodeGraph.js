@@ -22,7 +22,7 @@ class NodeGraph extends React.Component {
           onRemove={this.handleNodeRemove}
         />
         <Graph graph={this.props.graph} />
-        <Debug graph={this.props.graph} />
+        <Debug graph={this.props.graph} onRemove={this.handleNodeRemove} />
       </div>
     );
   }

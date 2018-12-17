@@ -1,6 +1,10 @@
 import React from "react";
 
 class Debug extends React.Component {
+  handleClick = ({ target }) => {
+    this.props.onRemove(target.innerText);
+  };
+
   render() {
     const { graph } = this.props;
 
@@ -10,7 +14,9 @@ class Debug extends React.Component {
         {graph.nodes && (
           <ul>
             {graph.nodes.map((node, index) => (
-              <li key={`node-${index}`}>{node.id}</li>
+              <li key={`node-${index}`} onClick={this.handleClick}>
+                {node.id}
+              </li>
             ))}
           </ul>
         )}

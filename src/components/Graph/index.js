@@ -27,13 +27,13 @@ class Graph extends React.Component {
   };
 
   draw = props => {
+    d3.select(".container > *").remove();
     const svg = d3.select(".container");
 
     var simulation = d3
-      .forceSimulation(props.graph.nodes)
-      .force("charge", d3.forceManyBody())
-      .force("center", d3.forceCenter())
-      // .alphaTarget(1)
+      .forceSimulation(props.graph.nodes, props.graph.links)
+      .force("link", d3.forceLink(props.graph.links).id(d => d.id))
+      .force("collide", d3.forceCollide().strength(1))
       .on("tick", this.ticked);
 
     this.nodesSelection = svg.selectAll(".node").data(props.graph.nodes);
@@ -44,6 +44,14 @@ class Graph extends React.Component {
       .attr("class", "node")
       .style("fill", "#45b29d")
       .attr("r", 5);
+
+    this.linksSelection = svg
+      .append("g")
+      .selectAll(".link")
+      .data(props.graph.links)
+      .enter()
+      .append("line")
+      .attr("class", "link");
   };
 
   ticked = () => {
@@ -54,11 +62,17 @@ class Graph extends React.Component {
       .attr("cy", function(d) {
         return d.y;
       });
+
+    this.linksSelection
+      .attr("x1", d => {
+        return d.source.x;
+      })
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
   };
 
   render() {
-    const { graph } = this.props;
-
     return (
       <div>
         <p>Graph</p>

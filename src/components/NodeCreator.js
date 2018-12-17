@@ -1,9 +1,10 @@
 import React from "react";
+import shortid from "shortid";
 
 class NodeCreator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: shortid() };
   }
 
   handleChange = event => {
@@ -13,6 +14,7 @@ class NodeCreator extends React.Component {
   handleAdd = event => {
     event.preventDefault();
     this.props.onAdd(this.state.value);
+    this.setState({ value: shortid() });
   };
 
   handleRemove = event => {
