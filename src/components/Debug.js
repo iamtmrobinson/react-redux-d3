@@ -9,8 +9,8 @@ class Debug extends React.Component {
     const { graph } = this.props;
 
     return (
-      <div>
-        <h2>Nodes</h2>
+      <div className="c-node-list">
+        <h2>Node List</h2>
         {graph.nodes && (
           <ul>
             {graph.nodes.map((node, index) => (

@@ -15,8 +15,7 @@ class NodeGraph extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>Node Graph</p>
+      <div className="c-container">
         <NodeCreator
           onAdd={this.handleNodeAdd}
           onRemove={this.handleNodeRemove}

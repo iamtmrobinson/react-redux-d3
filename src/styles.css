@@ -3,6 +3,27 @@
   text-align: center;
 }
 
+.c-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 10rem 1fr;
+  grid-template-rows: 4rem 1fr;
+}
+
+.c-node-creator {
+  border: 1px solid red;
+}
+
+.c-node-list {
+  border: 1px solid red;
+}
+
+.c-node-graph {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  border: 1px solid red;
+}
+
 .link {
   stroke: red;
   stroke-width: 2px;

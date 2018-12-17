@@ -42,7 +42,7 @@ const addNode = (state, action) => {
 const removeNode = (state, action) => {
   const newNodes = state.nodes.filter(node => node.id !== action.name);
   const newLinks = state.links.filter(
-    link => link.source !== action.name && link.target !== action.name
+    link => link.source.id !== action.name && link.target.id !== action.name
   );
 
   return Object.assign({}, state, { nodes: newNodes, links: newLinks });
