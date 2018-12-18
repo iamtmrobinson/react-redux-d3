@@ -41,6 +41,8 @@ class Graph extends React.Component {
       .selectAll(".node")
       .data(props.graph.nodes);
 
+    this.nodesSelection.exit().remove();
+
     this.nodesSelection = this.nodesSelection
       .enter()
       .append("circle")
@@ -50,6 +52,19 @@ class Graph extends React.Component {
       .attr("r", 5)
       .merge(this.nodesSelection);
 
+    this.linkSelection = d3
+      .select(".links")
+      .selectAll(".link")
+      .data(props.graph.links);
+
+    this.linkSelection.exit().remove();
+
+    this.linkSelection = this.linkSelection
+      .enter()
+      .append("line")
+      .attr("class", "link")
+      .merge(this.linkSelection);
+
     this.simulation.nodes(props.graph.nodes);
     this.simulation.force("link").links(props.graph.links);
     this.simulation.alpha(1).restart();
@@ -57,6 +72,12 @@ class Graph extends React.Component {
 
   ticked = () => {
     this.nodesSelection.attr("cx", d => d.x).attr("cy", d => d.y);
+
+    this.linkSelection
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
   };
 
   render() {
