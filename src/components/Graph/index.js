@@ -1,20 +1,33 @@
 import React from "react";
 import * as d3 from "d3";
 
-const WIDTH = 300;
-const HEIGHT = 300;
+const WIDTH = 500;
+const HEIGHT = 500;
+
+const clamp = (value, min, max) => {
+  return Math.min(Math.max(value, min), max);
+};
 
 class Graph extends React.Component {
   componentDidMount() {
+    console.log("Did Mount");
+
     this.initialise(this.props);
     this.draw(this.props);
   }
 
-  componentDidUpdate() {
-    this.draw(this.props);
+  shouldComponentUpdate(nextProps) {
+    console.log("Should Update");
+
+    this.draw(nextProps);
+    return true;
   }
 
+  componentDidUpdate() {}
+
   initialise = props => {
+    console.log("Initialise");
+
     const svg = d3
       .select(this.svg)
       .attr("width", WIDTH)
@@ -27,6 +40,7 @@ class Graph extends React.Component {
 
     this.simulation = d3
       .forceSimulation(props.graph.nodes, props.graph.links)
+      .alphaDecay(0.5)
       .force("charge", d3.forceManyBody())
       .force("link", d3.forceLink(props.graph.links).id(d => d.id))
       .force("collide", d3.forceCollide().strength(1))
@@ -34,13 +48,9 @@ class Graph extends React.Component {
   };
 
   draw = props => {
-    console.log(props.graph);
+    console.log("Draw", props.graph.links);
 
     const svg = d3.select(".container");
-
-    this.simulation.nodes(props.graph.nodes);
-    this.simulation.force("link").links(props.graph.links);
-    this.simulation.alpha(1).restart();
 
     this.nodesSelection = svg.selectAll(".node").data(props.graph.nodes);
 
@@ -74,9 +84,17 @@ class Graph extends React.Component {
       .enter()
       .append("line")
       .attr("class", "link");
+
+    this.simulation.nodes(props.graph.nodes);
+    this.simulation.force("link").links(props.graph.links);
+    this.simulation.alpha(1).restart();
+
+    console.log("----");
   };
 
   ticked = () => {
+    console.log("tick");
+
     this.nodesSelection.attr("transform", d => `translate(${d.x}, ${d.y})`);
 
     this.linksSelection
@@ -87,6 +105,8 @@ class Graph extends React.Component {
   };
 
   render() {
+    console.log("Render");
+
     return (
       <div className="c-node-graph">
         <p>Graph</p>

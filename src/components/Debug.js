@@ -1,5 +1,11 @@
 import React from "react";
 
+const getId = node => {
+  if (typeof node === "string") return node;
+
+  return node.id;
+};
+
 class Debug extends React.Component {
   handleClick = ({ target }) => {
     this.props.onRemove(target.innerText);
@@ -16,6 +22,16 @@ class Debug extends React.Component {
             {graph.nodes.map((node, index) => (
               <li key={`node-${index}`} onClick={this.handleClick}>
                 {node.id}
+              </li>
+            ))}
+          </ul>
+        )}
+        <h2>Link List</h2>
+        {graph.links && (
+          <ul>
+            {graph.links.map((link, index) => (
+              <li key={`link-${index}`}>
+                {getId(link.source)} to {getId(link.target)}
               </li>
             ))}
           </ul>

@@ -25,11 +25,13 @@ class NodeCreator extends React.Component {
   render() {
     return (
       <form className="c-node-creator">
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
+        <div>
+          <input
+            type="text"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+        </div>
         <button onClick={this.handleAdd}>Add</button>
         <button onClick={this.handleRemove}>Remove</button>
       </form>
