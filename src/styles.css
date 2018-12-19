@@ -19,8 +19,9 @@ h2 {
 /** List **/
 
 .c-node-list ul {
-  height: 10rem;
+  height: 11.5rem;
   overflow-y: scroll;
+  padding-left: 1rem;
 }
 
 .c-node-list li {

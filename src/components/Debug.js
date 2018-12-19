@@ -16,25 +16,29 @@ class Debug extends React.Component {
 
     return (
       <div className="c-node-list">
-        <h2>Node List</h2>
         {graph.nodes && (
-          <ul>
-            {graph.nodes.map((node, index) => (
-              <li key={`node-${index}`} onClick={this.handleClick}>
-                {node.id}
-              </li>
-            ))}
-          </ul>
+          <div>
+            <h2>Node List</h2>
+            <ul>
+              {graph.nodes.map((node, index) => (
+                <li key={`node-${index}`} onClick={this.handleClick}>
+                  {node.id}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
-        <h2>Link List</h2>
         {graph.links && (
-          <ul>
-            {graph.links.map((link, index) => (
-              <li key={`link-${index}`}>
-                {getId(link.source)} to {getId(link.target)}
-              </li>
-            ))}
-          </ul>
+          <div>
+            <h2>Link List</h2>
+            <ul>
+              {graph.links.map((link, index) => (
+                <li key={`link-${index}`}>
+                  {getId(link.source)} to {getId(link.target)}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     );
