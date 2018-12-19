@@ -1,20 +1,33 @@
-.App {
+/** Global **/
+
+body {
   font-family: sans-serif;
-  text-align: center;
+}
+
+h2 {
+  font-size: 0.9rem;
+  margin-top: 0;
 }
 
 .c-container {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 10rem 1fr;
-  grid-template-rows: 4rem 1fr;
+  grid-template-rows: 2rem 1fr;
 }
 
-.c-node-creator {
+/** List **/
+
+.c-node-list ul {
+  height: 10rem;
+  overflow-y: scroll;
 }
 
-.c-node-list {
+.c-node-list li {
+  text-align: left;
 }
+
+/** Graph **/
 
 .c-node-graph {
   grid-column: 2;

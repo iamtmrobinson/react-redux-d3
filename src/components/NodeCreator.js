@@ -17,23 +17,15 @@ class NodeCreator extends React.Component {
     this.setState({ value: shortid() });
   };
 
-  handleRemove = event => {
-    event.preventDefault();
-    this.props.onRemove(this.state.value);
-  };
-
   render() {
     return (
       <form className="c-node-creator">
-        <div>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </div>
+        <input
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
         <button onClick={this.handleAdd}>Add</button>
-        <button onClick={this.handleRemove}>Remove</button>
       </form>
     );
   }
