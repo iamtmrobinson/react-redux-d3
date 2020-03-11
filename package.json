@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "cached-path-relative": "^1.0.1",
     "d3": "latest",
     "react": "16.5.2",
     "react-dom": "16.5.2",
